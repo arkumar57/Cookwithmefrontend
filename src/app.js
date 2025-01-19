@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {Route, Routes, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import RecipeForm from './components/RecipeForm';
 import AllergyPopup from './components/AllergyPopup';
+import videoFile from './assets/example-video.mp4'; // Import your video
 
 const theme = createTheme({
   palette: {
@@ -51,15 +52,20 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      
         <div style={{ minHeight: '100vh', backgroundColor: '#f7f7f7', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {showAllergyPopup && <AllergyPopup onClose={() => setShowAllergyPopup(false)} />}
+          {/* Add Video here */}
+        <video width="600" controls style={{ marginBottom: '20px', borderRadius: '8px' }}>
+          <source src={videoFile} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
           <Routes>
             <Route path="/recipe-form" element={<RecipeForm />} />
             <Route path="*" element={<Navigate to="/recipe-form" replace />} />
           </Routes>
         </div>
-      </Router>
+      
     </ThemeProvider>
   );
 }
