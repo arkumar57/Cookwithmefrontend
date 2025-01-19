@@ -4,7 +4,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import RecipeForm from './components/RecipeForm';
 import AllergyPopup from './components/AllergyPopup';
-import videoFile from './assets/example-video.mp4'; // Import your video
+import gifImage from './assets/example-video.gif'; // Import your video
+import { Box } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -56,10 +57,13 @@ function App() {
         <div style={{ minHeight: '100vh', backgroundColor: '#f7f7f7', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {showAllergyPopup && <AllergyPopup onClose={() => setShowAllergyPopup(false)} />}
           {/* Add Video here */}
-        <video width="600" controls style={{ marginBottom: '20px', borderRadius: '8px' }}>
-          <source src={videoFile} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          <Box sx={{ textAlign: 'center' }}>
+      <img 
+        src={gifImage}  // Path to your GIF
+        alt="Descriptive Text"
+        style={{ width: '100%', maxWidth: '600px', borderRadius: '8px' }}  // Optional styling
+      />
+    </Box>
           <Routes>
             <Route path="/recipe-form" element={<RecipeForm />} />
             <Route path="*" element={<Navigate to="/recipe-form" replace />} />
