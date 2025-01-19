@@ -15,9 +15,9 @@ const theme = createTheme({
     secondary: {
       main: '#4ecdc4', // A fresh teal
     },
-    background: {
-      default: '#f7f7f7',
-    },
+    // background: {
+    //   default: '#f7f7f7',
+    // },
   },
   typography: {
     fontFamily: '"Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -54,15 +54,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       
-        <div style={{ minHeight: '100vh', backgroundColor: '#f7f7f7', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {showAllergyPopup && <AllergyPopup onClose={() => setShowAllergyPopup(false)} />}
           {/* Add Video here */}
           <Box sx={{ textAlign: 'center' }}>
-      <img 
-        src={gifImage}  // Path to your GIF
-        alt="Descriptive Text"
-        style={{ width: '100%', maxWidth: '600px', borderRadius: '8px' }}  // Optional styling
-      />
     </Box>
           <Routes>
             <Route path="/recipe-form" element={<RecipeForm />} />

@@ -14,6 +14,8 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import AddIcon from '@mui/icons-material/Add';
 import TimerIcon from '@mui/icons-material/Timer';
 import GroupIcon from '@mui/icons-material/Group';
+import gifImage from '../assets/example-video.gif'; // Import your video
+
 
 function RecipeForm() {
   const [recipe, setRecipe] = useState({
@@ -34,129 +36,45 @@ function RecipeForm() {
     e.preventDefault();
     console.log('Recipe submitted:', recipe);
     setSnackbarOpen(true);
-    // Here you would typically send the data to your backend
   };
 
   return (
-    <Paper elevation={3} sx={{ maxWidth: 800, width: '100%', mx: 'auto', p: 4, borderRadius: 4 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
-        <RestaurantMenuIcon sx={{ fontSize: 40, mr: 2, color: 'primary.main' }} />
-        <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600 }}>
-          Create Your Recipe
-        </Typography>
-      </Box>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Recipe Name"
-              id="name"
-              name="name"
-              value={recipe.name}
-              onChange={handleChange}
-              required
-              variant="outlined"
-              placeholder="e.g., Grandma's Apple Pie"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Prep Time"
-              id="prepTime"
-              name="prepTime"
-              value={recipe.prepTime}
-              onChange={handleChange}
-              required
-              variant="outlined"
-              placeholder="e.g., 30 minutes"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <TimerIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Servings"
-              id="servings"
-              name="servings"
-              value={recipe.servings}
-              onChange={handleChange}
-              required
-              variant="outlined"
-              placeholder="e.g., 4"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <GroupIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Ingredients"
-              id="ingredients"
-              name="ingredients"
-              value={recipe.ingredients}
-              onChange={handleChange}
-              required
-              variant="outlined"
-              multiline
-              rows={4}
-              placeholder="List your ingredients, one per line"
-              helperText="Tip: Include quantities for each ingredient"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Instructions"
-              id="instructions"
-              name="instructions"
-              value={recipe.instructions}
-              onChange={handleChange}
-              required
-              variant="outlined"
-              multiline
-              rows={6}
-              placeholder="Describe the steps to prepare your recipe"
-              helperText="Tip: Number your steps for clarity"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button 
-              type="submit" 
-              variant="contained" 
-              color="primary" 
-              fullWidth 
-              size="large"
-              startIcon={<AddIcon />}
-              sx={{ py: 1.5, fontSize: '1.1rem' }}
-            >
-              Create Recipe
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnackbarOpen(false)}
-        message="Recipe submitted successfully!"
+    <Box sx={{ display: 'flex', height: '100vh', backgroundColor: '#ffffff' }}>
+      {/* Content Area */}
+      <Box sx={{ flex: 1, p: 4 }}>
+        <Paper elevation={3} sx={{ maxWidth: 800, width: '100%', mx: 'auto', p: 4, borderRadius: 4 }}>
+          {/* <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}> */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
+            {/* <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 600, color: '#2e7d32' }}>
+              Your Personalized Recipe
+            </Typography> */}
+            <img 
+        src={gifImage}  // Path to your GIF
+        alt="Descriptive Text"
+        style={{ width: '50%'}}  // Optional styling
       />
-    </Paper>
+            {/* <RestaurantMenuIcon sx={{ fontSize: 60, color: '#4caf50' }} /> */}
+        <TextField
+          fullWidth
+          placeholder="Search..."
+          variant="outlined"
+          sx={{ backgroundColor: '#ffffff', borderRadius: 1 }}
+        />
+        <Button variant="contained" color="success" fullWidth sx={{ mb: 1 }}>
+          Need ideas for meals?
+        </Button>
+          </Box>
+          <Snackbar
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={() => setSnackbarOpen(false)}
+            message="Recipe submitted successfully!"
+          />
+        </Paper>
+      </Box>
+    </Box>
   );
 }
 
 export default RecipeForm;
-
